@@ -23,6 +23,6 @@ module "prometheus-deb-triggers" {
   ownerName = "LadySerena"
   ciDevPath = "ci/feature/cloudbuild.yaml"
   ciMainPath = "ci/release/cloudbuild.yaml"
-  repoName = "lab-tf"
+  repoName = "prometheus-deb"
   project_id = data.google_project.project.project_id
 }
