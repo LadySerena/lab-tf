@@ -9,6 +9,7 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 .terraformrc
+*.plan
 terraform.rc
 .idea
 *.iml
