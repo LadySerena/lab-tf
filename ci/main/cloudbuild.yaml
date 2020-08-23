@@ -10,5 +10,5 @@ steps:
   - name: hashicorp/terraform:light
     args:
       - apply
-      - 'tf.plan'
       - '-auto-approve'
+      - 'tf.plan'
