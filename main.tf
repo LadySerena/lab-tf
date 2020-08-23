@@ -51,6 +51,9 @@ module "project-iam-bindings" {
   bindings = {
     "roles/serviceusage.serviceUsageAdmin" = [
       "serviceAccount:952032963423@cloudbuild.gserviceaccount.com",
+    ],
+    "roles/iam.securityAdmin" = [
+      "serviceAccount:952032963423@cloudbuild.gserviceaccount.com",
     ]
   }
 }
