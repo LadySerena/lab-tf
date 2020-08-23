@@ -22,6 +22,7 @@ module "project-services" {
     "iam.googleapis.com",
     "storage.googleapis.com",
     "cloudresourcemanager.googleapis.com",
+    "cloudbuild.googleapis.com",
   ]
 }
 
