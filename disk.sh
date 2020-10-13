@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
-mount_point="/data-dir"
-owner="root"
-disk_id="test"
-volume_group_name="datavolgroup"
-lvm_name="datalvm"
+mount_point=$(curl http://metadata.google.internal/computeMetadata/v1/instance/attributes/mount-point -H "Metadata-Flavor: Google")y
+owner=$(curl http://metadata.google.internal/computeMetadata/v1/instance/attributes/owner -H "Metadata-Flavor: Google")
+disk_id=$(curl http://metadata.google.internal/computeMetadata/v1/instance/attributes/disk-id -H "Metadata-Flavor: Google")
+volume_group_name=$(curl http://metadata.google.internal/computeMetadata/v1/instance/attributes/volume-group-name -H "Metadata-Flavor: Google")
+lvm_name=$(curl http://metadata.google.internal/computeMetadata/v1/instance/attributes/lvm-name -H "Metadata-Flavor: Google")
 
 create_lvm() {
     sudo pvcreate "/dev/disk/by-id/google-$disk_id"

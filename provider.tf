@@ -1,7 +1,7 @@
 provider "google" {
   project = "telvanni-lab"
   region  = "us-central1"
-  version = "~> 3.34"
+  version = "~> 3.42"
   zone    = "us-central1-c"
 }
 provider "google-beta" {

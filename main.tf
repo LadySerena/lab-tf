@@ -3,12 +3,24 @@ data "google_project" "project" {
 
 module "gcs_buckets" {
   source     = "terraform-google-modules/cloud-storage/google"
-  version    = "~> 1.6"
+  version    = "~> 1.7"
   location   = "US"
   project_id = data.google_project.project.project_id
   names = [
-  "deb-repo"]
+    "deb-repo",
+    "lab-metadata"
+  ]
+  set_viewer_roles = true
+  bucket_viewers = {
+    lab-metadata = "serviceAccount:952032963423-compute@developer.gserviceaccount.com"
+  }
   prefix = "tel"
+}
+
+resource "google_storage_bucket_object" "startup-script" {
+  name = "startup-script.sh"
+  bucket = module.gcs_buckets.names_list[1]
+  source = "./disk.sh"
 }
 
 module "project-services" {
@@ -53,6 +65,12 @@ module "project-iam-bindings" {
       "serviceAccount:952032963423@cloudbuild.gserviceaccount.com",
     ],
     "roles/iam.securityAdmin" = [
+      "serviceAccount:952032963423@cloudbuild.gserviceaccount.com",
+    ],
+    "roles/compute.networkAdmin" = [
+      "serviceAccount:952032963423@cloudbuild.gserviceaccount.com",
+    ],
+    "roles/compute.securityAdmin" = [
       "serviceAccount:952032963423@cloudbuild.gserviceaccount.com",
     ]
   }
